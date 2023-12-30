@@ -4,11 +4,19 @@ import LoginPage from './pages/auth/LoginPage'
 import Dashboard from './pages/dashboard'
 import RegisterPage from './pages/auth/RegisterPage'
 import DiagramPage from './pages/Diagram/DiagramPage'
+import NavBarMenu from './components/navBarMenu'
 
 
 function App() {
+  // options
+  let arNavBarOption = [
+    { option: 'bi bi-question-circle', to: '/ayuda' },
+    { option: 'bi bi-gear', to: '/configuracion' },
+  ];
+
   return (
     <BrowserRouter>
+      <NavBarMenu opciones={arNavBarOption}/>
       <Routes>
         <Route index element={<LoginPage/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
