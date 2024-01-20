@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import api from "../API/axios";
 
 export default function ModalJoinRoom({ title, inputCount, onSubmit, onCancel }) {
+  const token = localStorage.getItem("token");
   
   //form
   const {
@@ -13,17 +14,18 @@ export default function ModalJoinRoom({ title, inputCount, onSubmit, onCancel })
 
   // Handlers
   const handleJoinRoom = (data) => {
-    console.log('Data formulario', { ...data, ownerId: 1 })
+    console.log('Data formulario', { ...data, jwt: token })
 
-    // api
-    //   .post("/room", { ...data, ownerId: 1 })
-    //   .then((res) => {
-    //     onCreateRoom(res.data);
-    //     newRoomModalRef.current.hide();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    api
+      .post("/room/invitation", { ...data, jwt: token })
+      .then((res) => {
+        console.log(res.data);
+        // window.location.href = res.data;
+        window.open(res.data, '_blank');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -40,9 +42,9 @@ export default function ModalJoinRoom({ title, inputCount, onSubmit, onCancel })
                 <label className="form-label">Ingresa el enlace</label>
                 <input
                   type="text"
-                  {...register("link", { required: true })}
-                  className="form-control" id="link" />
-                {errors?.link?.type === "required" && <p className="text-danger">El campo enlace es obligatorio*</p>}
+                  {...register("invitationToken", { required: true })}
+                  className="form-control" id="invitationToken" />
+                {errors?.invitationToken?.type === "required" && <p className="text-danger">El campo enlace es obligatorio*</p>}
               </div>
               <div className="col-12 text-end mt-3">
                 <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
