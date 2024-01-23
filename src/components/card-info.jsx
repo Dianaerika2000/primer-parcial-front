@@ -2,7 +2,7 @@ export default function CardInfo() {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">El diagrama esta listo...</h5>
+        <h5 className="card-title">Generar Codigo</h5>
         <p className="card-text">
           Comparte este enlace con las personas que quieras que colaboren en este diagrama.
         </p>
