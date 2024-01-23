@@ -2,8 +2,8 @@ import ClipboardJS from 'clipboard';
 import { Link } from 'react-router-dom';
 
 export default function Table({ data }) {
-  // const url = `http://localhost:8080/model-c4`;
-  const url = `http://54.71.131.29:8080/model-c4`;
+  const url = `http://localhost:8080/model-c4`;
+  // const url = `http://54.71.131.29:8080/model-c4`;
   const token = localStorage.getItem("token");
 
   // Función para copiar la invitación al portapapeles
